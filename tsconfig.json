@@ -1,0 +1,15 @@
+{
+  "include": ["**/*"],
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "target": "ES6",
+    "outDir": "build/",
+    "rootDir": ".",
+    "module": "ES6",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+  }
+}
