@@ -3,7 +3,7 @@ import { Document, ObjectId } from "mongodb";
 import { Collection, FilterQuery } from "mongoose";
 
 export interface IRepository<T> {
-  get(id: ObjectId, select?: any): Promise<T>;
+  get(id: string, select?: any): Promise<T>;
 
   find(
     filter: FilterQuery<T>,
@@ -37,8 +37,9 @@ export default class Repository<T> implements IRepository<T> {
     // this.collection = dbInstance.getCollection(collection);
   }
 
-  get(id: ObjectId, select?: any): Promise<T> {
-    throw new Error("Method not implemented.");
+  async get(id: string, select?: any): Promise<T> {
+    const doc = (await this.collection.findById(id)) as T;
+    return doc;
   }
   async find(
     filter: FilterQuery<T> = {},
@@ -50,8 +51,9 @@ export default class Repository<T> implements IRepository<T> {
     const doc = (await this.collection.find(filter)) as T[];
     return doc;
   }
-  create(data: Partial<T>): Promise<T> {
-    throw new Error("Method not implemented.");
+  async create(data: Partial<T>): Promise<T> {
+    const doc = (await this.collection.create(data)) as T;
+    return doc;
   }
   async createMany(data: (T | undefined)[]): Promise<T[]> {
     // const collection = this.collection;

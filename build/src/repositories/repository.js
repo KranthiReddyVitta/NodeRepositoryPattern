@@ -23,7 +23,10 @@ let Repository = class Repository {
         // this.collection = dbInstance.getCollection(collection);
     }
     get(id, select) {
-        throw new Error("Method not implemented.");
+        return __awaiter(this, void 0, void 0, function* () {
+            const doc = (yield this.collection.findById(id));
+            return doc;
+        });
     }
     find(filter = {}, limit = 20, page, select, sort) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -32,7 +35,10 @@ let Repository = class Repository {
         });
     }
     create(data) {
-        throw new Error("Method not implemented.");
+        return __awaiter(this, void 0, void 0, function* () {
+            const doc = (yield this.collection.create(data));
+            return doc;
+        });
     }
     createMany(data) {
         return __awaiter(this, void 0, void 0, function* () {

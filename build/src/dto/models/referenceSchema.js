@@ -20,4 +20,4 @@ const ruleSeveritySchema = new mongoose.Schema(Object.assign({}, ruleTypeSchema.
 const RuleSeveritySchema = mongoose.model("RuleSeverity", ruleSeveritySchema);
 const ruleHardStopSchema = new mongoose.Schema(Object.assign({}, ruleTypeSchema.obj));
 const RuleHardStopSchema = mongoose.model("RuleHardStop", ruleHardStopSchema);
-export { RuleType, RuleCategory, RuleProcessPoint, RuleReportSchema, RuleMaterialSchema, RuleDispalySchema, RuleSeveritySchema, RuleHardStopSchema };
+export { RuleType, RuleCategory, RuleProcessPoint, RuleReportSchema, RuleMaterialSchema, RuleDispalySchema, RuleSeveritySchema, RuleHardStopSchema, };

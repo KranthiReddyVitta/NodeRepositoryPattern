@@ -1,8 +1,10 @@
 import ReferenceDataController from "./controllers/referenceData.controller.js";
 import container from "./inversify.js";
+import { TYPES } from "./types.js";
 import asyncWrap from "./utils/asyncWrapper.js";
 export default function (app) {
     const ReferenceDataControllerInstance = container.get(ReferenceDataController);
+    const RuleController = container.get(TYPES.RuleController);
     app.post("/referenceData/ruleType", asyncWrap(ReferenceDataControllerInstance.createRuleTypes.bind(ReferenceDataControllerInstance)));
     app.post("/referenceData/ruleCategory", asyncWrap(ReferenceDataControllerInstance.createRuleCategory.bind(ReferenceDataControllerInstance)));
     app.post("/referenceData/ruleProcessPoint", asyncWrap(ReferenceDataControllerInstance.createRuleProcessPoint.bind(ReferenceDataControllerInstance)));
@@ -19,4 +21,6 @@ export default function (app) {
     app.get("/referenceData/ruleDisplay", asyncWrap(ReferenceDataControllerInstance.getRuleDisplay.bind(ReferenceDataControllerInstance)));
     app.get("/referenceData/ruleSeverity", asyncWrap(ReferenceDataControllerInstance.getRuleSeverity.bind(ReferenceDataControllerInstance)));
     app.get("/referenceData/ruleHardStop", asyncWrap(ReferenceDataControllerInstance.getRuleHardStop.bind(ReferenceDataControllerInstance)));
+    app.post("/rule", asyncWrap(RuleController.createRule.bind(RuleController)));
+    app.get("/rule/:id", asyncWrap(RuleController.getRuleById.bind(RuleController)));
 }

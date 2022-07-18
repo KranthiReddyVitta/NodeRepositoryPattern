@@ -1,11 +1,14 @@
 import { Application } from "express";
 import ReferenceDataController from "./controllers/referenceData.controller.js";
+import RuleController from "./controllers/rule.controller.js";
 import container from "./inversify.js";
+import { TYPES } from "./types.js";
 import asyncWrap from "./utils/asyncWrapper.js";
 
 export default function (app: Application) {
   const ReferenceDataControllerInstance =
     container.get<ReferenceDataController>(ReferenceDataController);
+  const RuleController = container.get<RuleController>(TYPES.RuleController);
 
   app.post(
     "/referenceData/ruleType",
@@ -147,5 +150,11 @@ export default function (app: Application) {
         ReferenceDataControllerInstance
       )
     )
+  );
+
+  app.post("/rule", asyncWrap(RuleController.createRule.bind(RuleController)));
+  app.get(
+    "/rule/:id",
+    asyncWrap(RuleController.getRuleById.bind(RuleController))
   );
 }

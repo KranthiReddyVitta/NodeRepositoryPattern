@@ -14,7 +14,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { injectable } from "inversify";
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 let Database = class Database {
     constructor() {
         this.connection = {
